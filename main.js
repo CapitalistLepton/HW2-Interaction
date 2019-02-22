@@ -31,15 +31,19 @@ class GameEngine {
   start() {
     console.log('Starting the game');
     var that = this;
+     let counter = 0;
     (function gameLoop() {
-       that.loop();
+       if (counter % 5 === 0) {
+         that.loop();
+       }
        requestAnimFrame(gameLoop, that.ctx.canvas);
+       counter++;
     })();
   }
 
   loop() {
-    this.life.tick();
     this.draw();
+    this.life.tick();
   }
 
   draw() {
