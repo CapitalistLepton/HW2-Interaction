@@ -16,6 +16,12 @@ function main() {
 
   const life = new Life();
   const game = new GameEngine(ctx, life);
+
+  const button = document.getElementById('pause');
+  button.onclick = function () {
+    game.paused = !game.paused;
+  };
+
   game.start();
 }
 
@@ -24,16 +30,17 @@ class GameEngine {
     this.ctx = ctx;
     this.width = this.ctx.canvas.width;
     this.height = this.ctx.canvas.height;
+    this.paused = false;
     this.life = life;
     console.log('Initialized the game');
   }
 
   start() {
     console.log('Starting the game');
-    var that = this;
-     let counter = 0;
+    let that = this;
+    let counter = 0;
     (function gameLoop() {
-       if (counter % 5 === 0) {
+       if (counter % 5 === 0 && !that.paused) {
          that.loop();
        }
        requestAnimFrame(gameLoop, that.ctx.canvas);

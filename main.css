@@ -13,3 +13,9 @@ h1 {
   text-align: center;
   font-family: sans-serif;
 }
+button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2rem;
+}
